@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quote-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: quote
+  template:
+    metadata:
+      labels:
+        app: quote
+    spec:
+      containers:
+      - name: quote-container
+        image: alahomora/quote_services
+        ports:
+        - containerPort: 5005   # Expose port 5005 in the container

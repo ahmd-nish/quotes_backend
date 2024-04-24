@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config
+data:
+  nginx.conf: |
+    events {}
+    http {
+      server {
+        listen 80;
+
+        location /quotes {
+          proxy_pass http://quotes-service:80;
+        }
+
+        location /profiles {
+          proxy_pass http://profile-service:80;
+        }
+
+        location /generate {
+          proxy_pass http://generator-service:80;
+        }
+
+        # Add other locations here if you have more services
+      }
+    }
